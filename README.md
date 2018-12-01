@@ -3,6 +3,10 @@ REST-API for GTFS
 
 Examples:
 
+You could use the following command for use pgadmin:
+
+````docker run -p 80:80 -e "PGADMIN_DEFAULT_EMAIL=user@domain.com" -e "PGADMIN_DEFAULT_PASSWORD=SuperSecret" -d dpage/pgadmin4````
+    
 Let say that we stand in Aliezer Kaplan & Menachem Begin in Tel-Aviv. The location could be declare as:
 
 ```
