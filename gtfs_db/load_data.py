@@ -29,7 +29,6 @@ def init_db_schema():
 
 
 def upload_data_to_mirror(folder_path):
-    os.path.join(folder_path, )
     process_file(postges_conn, 'mirror.agency',          os.path.join(folder_path, 'agency.txt'))
     process_file(postges_conn, 'mirror.calendar',        os.path.join(folder_path, 'calendar.txt'))
     process_file(postges_conn, 'mirror.fare_attributes', os.path.join(folder_path, 'fare_attributes.txt'))
