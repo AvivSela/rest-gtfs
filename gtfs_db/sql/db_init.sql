@@ -211,3 +211,14 @@ CREATE TABLE public.stops (
 
 
 ALTER TABLE public.stops OWNER TO postgres;
+
+CREATE OR REPLACE VIEW mirror.routes_in_stop AS
+SELECT max(arrival_time::interval) max_arrival_time,min(arrival_time::interval) min_arrival_time ,stop_id,t.route_id
+	FROM mirror.stop_times st
+	join mirror.trips t
+	on st.trip_id = t.trip_id
+	group by stop_id,t.route_id
+	;
+
+ALTER TABLE mirror.routes_in_stop
+    OWNER TO postgres;
