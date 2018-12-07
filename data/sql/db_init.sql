@@ -23,7 +23,7 @@ SET row_security = off;
 -- Name: mirror; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
-DROP TABLE IF EXISTS public.stops;
+--DROP TABLE IF EXISTS public.stops;
 DROP TABLE IF EXISTS mirror.agency;
 DROP TABLE IF EXISTS mirror.calendar;
 DROP TABLE IF EXISTS mirror.fare_attributes;
@@ -196,21 +196,21 @@ ALTER TABLE mirror.trips OWNER TO postgres;
 -- PostgreSQL database dump complete
 --
 
-CREATE TABLE public.stops (
-    stop_id integer,
-    stop_code integer,
-    stop_name text,
-    stop_desc text,
-    stop_lat double precision,
-    stop_lon double precision,
-    location_type integer,
-    parent_station integer,
-    zone_id integer,
-    location public.geography(Point,4326)
-);
+--CREATE TABLE public.stops (
+--    stop_id integer,
+--    stop_code integer,
+--    stop_name text,
+--    stop_desc text,
+--    stop_lat double precision,
+--    stop_lon double precision,
+--    location_type integer,
+--    parent_station integer,
+--    zone_id integer,
+--   location public.geography(Point,4326)
+--);
 
 
-ALTER TABLE public.stops OWNER TO postgres;
+--ALTER TABLE public.stops OWNER TO postgres;
 
 CREATE OR REPLACE VIEW mirror.routes_in_stop AS
 SELECT max(arrival_time::interval) max_arrival_time,min(arrival_time::interval) min_arrival_time ,stop_id,t.route_id
