@@ -7,18 +7,11 @@ let chaiHttp = require('chai-http');
 let server = require('../app');
 let should = chai.should();
 
-
 chai.use(chaiHttp);
-
-
-chai.use(chaiHttp);
-//Our parent block
-describe('Stops', () => {
-
 /*
   * Test the /GET route
   */
-  describe('/GET stop', () => {
+  describe('stop', () => {
     it('should list stops on /stop GET', function(done) {
       chai.request(server)
         .get('/v1/stop')
@@ -76,8 +69,4 @@ describe('Stops', () => {
           done();
         });
     });
-
-
   });
-
-});

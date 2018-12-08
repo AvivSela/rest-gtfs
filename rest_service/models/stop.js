@@ -26,6 +26,15 @@ function getStops(req, res, next) {
 };
 
 
+function getSpecificStopValidation(req, res, next){
+    req.params.stopId = parseInt(req.params.stopId, 10)
+    if (req.params.stopId){
+      next()
+    } else {
+      next({'code':404,'message':'parameter should be a number'})
+    }
+  }
+
 function getSpecificStop(req, res, next) {
     pool.query(`SELECT stop_id, stop_code, stop_name, stop_desc, stop_lat,
                     stop_lon, location_type, parent_station, zone_id,
@@ -40,6 +49,18 @@ function getSpecificStop(req, res, next) {
         })
         .catch(e => next(e))
 }
+
+function getStopsNextByValidation(req, res, next) {
+    if (req.body.nextTo && req.body.nextTo.coordinates && req.body.nextTo.coordinates.length == 2) {
+      req.body.limit = (req.body.limit ? req.body.limit : 3)
+      next()
+    } else {
+      next({
+        'code': 520,
+        'message': 'syntax error ' + req.body
+      })
+    }
+  }
 
 
 function getStopsNextBy(req, res, next) {
@@ -77,8 +98,11 @@ module.exports.getStopsNextBy = getStopsNextBy;
 
 
 module.exports = {
+    'pool':pool,
     'getStops': getStops,
     'getSpecificStop': getSpecificStop,
-    'getStopsNextBy': getStopsNextBy
+    'getStopsNextBy': getStopsNextBy,
+    'getSpecificStopValidation': getSpecificStopValidation,
+    'getStopsNextByValidation': getStopsNextByValidation,
 
 }
