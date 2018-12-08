@@ -14,4 +14,8 @@ REST-API for GTFS
 5. Start rest-service: `npm start --prefix ./rest_service`
 
 - The main page avaliable in: `http://localhost:3000/`
-- Information for a stop NO.1 avaliable in `http://localhost:3000/v1/stop/1`
+
+## API:
+- GET /v1/stop/1 -> get stop with id 1.
+- GET /v1/stop -> get list of stops.
+- POST /v1/stop { nextTo:{ "type":"Point", "coordinates":[34.917812,32.183939]}} -> get list of stops nearby the given coordinates.
