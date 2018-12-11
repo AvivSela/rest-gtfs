@@ -1,0 +1,8 @@
+language: python
+
+services:
+  - docker
+
+before_install:
+- python3 data/db_service.py start
+- docker ps -a
