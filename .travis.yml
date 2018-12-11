@@ -4,5 +4,6 @@ services:
   - docker
 
 before_install:
+- pip3 install dotenv psycopg2
 - python3 data/db_service.py start
 - docker ps -a
