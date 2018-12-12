@@ -3,7 +3,8 @@ import sys
 
 from dotenv import load_dotenv
 import subprocess
-ENV_FILE_PATH = '../.env'
+
+ENV_FILE_PATH = os.path.join(os.path.dirname(__file__),'../.env')
 
 def start():
     if os.path.exists(ENV_FILE_PATH):
