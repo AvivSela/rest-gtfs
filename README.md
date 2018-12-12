@@ -17,5 +17,14 @@ REST-API for GTFS
 
 ## API:
 - GET /v1/stop/1 -> get stop with id 1.
+Return:
+
+`{"id":3,"code":38833,"name":"הנחשול/הדייגים","desc":" רחוב:הנחשול 30 עיר: ראשון לציון רציף:   קומה:  ","zone_id":8300,"position":{"type":"Point","coordinates":[34.782828,31.984553]}}`
 - GET /v1/stop -> get list of stops.
+Return:
+
+`[{"id":3,"code":38833,"name":"הנחשול/הדייגים","desc":" רחוב:הנחשול 30 עיר: ראשון לציון רציף:   קומה:  ","zone_id":8300,"position":{"type":"Point","coordinates":[34.782828,31.984553]}},{"id":9,"code":38839,"name":"הבנים/אלי כהן","desc":" רחוב:הבנים 4 עיר: קרית עקרון רציף:   קומה:  ","zone_id":469,"position":{"type":"Point","coordinates":[34.821857,31.862305]}}]`
 - POST /v1/stop { nextTo:{ "type":"Point", "coordinates":[34.917812,32.183939]}} -> get list of stops nearby the given coordinates.
+Return:
+
+`[{"id":3,"code":38833,"name":"הנחשול/הדייגים","desc":" רחוב:הנחשול 30 עיר: ראשון לציון רציף:   קומה:  ","zone_id":8300,"position":{"type":"Point","coordinates":[34.782828,31.984553]}},{"id":9,"code":38839,"name":"הבנים/אלי כהן","desc":" רחוב:הבנים 4 עיר: קרית עקרון רציף:   קומה:  ","zone_id":469,"position":{"type":"Point","coordinates":[34.821857,31.862305]}}]`
