@@ -3,7 +3,7 @@ python:
 - "3.6"
 services:
   - docker
-before_install:
+install:
 - pip3 install python-dotenv psycopg2
 - python3 data/db_service.py start
 - docker ps -a
