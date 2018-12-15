@@ -4,7 +4,7 @@ python:
 services:
   - docker
 install:
-- pip3 install python-dotenv psycopg2
+- pip3 install python-dotenv psycopg2-binary
 - python3 data/db_service.py start
 - docker ps -a
 - cd data
