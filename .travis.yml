@@ -7,7 +7,9 @@ install:
 - pip3 install python-dotenv psycopg2
 - python3 data/db_service.py start
 - docker ps -a
-- python3 data/load_data.py
+- cd data
+- python3 load_data.py
+- cd ..
 - cd rest_service
 - npm install
 - cd ..
