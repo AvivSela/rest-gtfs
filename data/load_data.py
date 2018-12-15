@@ -7,7 +7,11 @@ from ftplib import FTP
 
 load_dotenv('../.env')
 
-
+print("POSTGRES_HOST: {} POSTGRES_PORT: {} POSTGRES_DB: {} POSTGRES_USER: {} POSTGRES_PASSWORD: {}".format(os.getenv("POSTGRES_HOST"),
+                                    os.getenv("POSTGRES_PORT"),
+                                    os.getenv("POSTGRES_DB"),
+                                    os.getenv("POSTGRES_USER"),
+                                    os.getenv("POSTGRES_PASSWORD")))
 
 postges_conn = psycopg2.connect("host={} port={} dbname={} user={} password={}"
                                 .format(os.getenv("POSTGRES_HOST"),
@@ -15,7 +19,6 @@ postges_conn = psycopg2.connect("host={} port={} dbname={} user={} password={}"
                                     os.getenv("POSTGRES_DB"),
                                     os.getenv("POSTGRES_USER"),
                                     os.getenv("POSTGRES_PASSWORD")))
-
 
 SQL_STATEMENT = """ COPY %s FROM STDIN WITH CSV HEADER DELIMITER AS ',' QUOTE AS '`' """
 
