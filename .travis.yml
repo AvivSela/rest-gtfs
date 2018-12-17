@@ -1,0 +1,20 @@
+language: python
+python:
+- "3.6"
+services:
+  - docker
+install:
+- pip3 install python-dotenv psycopg2-binary
+- python3 data/db_service.py start
+- docker ps -a
+- sleep 15
+- cd data
+- python3 load_data.py
+- cd ..
+- cd rest_service
+- npm install
+- cd ..
+script:
+- cd rest_service/
+- npm test
+

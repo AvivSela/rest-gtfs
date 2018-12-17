@@ -217,8 +217,19 @@ SELECT max(arrival_time::interval) max_arrival_time,min(arrival_time::interval) 
 	FROM mirror.stop_times st
 	join mirror.trips t
 	on st.trip_id = t.trip_id
-	group by stop_id,t.route_id
-	;
+	group by stop_id,t.route_id;
 
 ALTER TABLE mirror.routes_in_stop
+    OWNER TO postgres;
+
+
+CREATE OR REPLACE VIEW mirror.routes_name_in_stop AS
+ SELECT DISTINCT r.route_short_name,
+    a.agency_name,
+    rs.stop_id
+   FROM mirror.routes_in_stop rs
+     JOIN mirror.routes r ON rs.route_id = r.route_id
+     JOIN mirror.agency a ON r.agency_id = a.agency_id;
+
+ALTER TABLE mirror.routes_name_in_stop
     OWNER TO postgres;

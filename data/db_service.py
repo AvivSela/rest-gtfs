@@ -4,12 +4,17 @@ import sys
 from dotenv import load_dotenv
 import subprocess
 
+ENV_FILE_PATH = os.path.join(os.path.dirname(__file__),'../.env')
 
 def start():
-    load_dotenv()
+    if os.path.exists(ENV_FILE_PATH):
+        load_dotenv(dotenv_path=ENV_FILE_PATH)
 
-    bash_command = "docker run --name some-postgis -e POSTGRES_PASSWORD={} -e POSTGRES_DB=gtfs_db -p 5432:5432 --rm \
-    -d mdillon/postgis".format(os.getenv("POSTGRES_PASSWORD"))
+    bash_command = '''docker run --name some-postgis -e POSTGRES_PASSWORD={} -e POSTGRES_USER={}
+                                 -e POSTGRES_DB={} -p {}:5432 --rm -d mdillon/postgis'''.format(os.getenv("POSTGRES_PASSWORD"),
+                            os.getenv("POSTGRES_USER"),
+                            os.getenv("POSTGRES_DB"),
+                            os.getenv("POSTGRES_PORT"))
 
     process = subprocess.Popen(bash_command.split())
     process.communicate()

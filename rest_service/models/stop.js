@@ -2,12 +2,20 @@ const {
     Pool
 } = require('pg')
 
+console.log({
+    user: process.env.POSTGRES_USER,
+    host: process.env.POSTGRES_HOST,
+    database: process.env.POSTGRES_DB,
+    password: process.env.POSTGRES_PASSWORD,
+    port: process.env.POSTGRES_PORT,
+})
+
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'gtfs_db',
-    password: '123',
-    port: 5432,
+    user: process.env.POSTGRES_USER,
+    host: process.env.POSTGRES_HOST,
+    database: process.env.POSTGRES_DB,
+    password: process.env.POSTGRES_PASSWORD,
+    port: process.env.POSTGRES_PORT,
 })
 
 

@@ -5,11 +5,20 @@ import tempfile
 import zipfile
 from ftplib import FTP
 
-load_dotenv()
+load_dotenv('../.env')
 
-postges_conn = psycopg2.connect("host=localhost dbname=gtfs_db user=postgres password=123"
-                                .format(os.getenv("POSTGRES_PASSWORD")))
+print("POSTGRES_HOST: {} POSTGRES_PORT: {} POSTGRES_DB: {} POSTGRES_USER: {} POSTGRES_PASSWORD: {}".format(os.getenv("POSTGRES_HOST"),
+                                    os.getenv("POSTGRES_PORT"),
+                                    os.getenv("POSTGRES_DB"),
+                                    os.getenv("POSTGRES_USER"),
+                                    os.getenv("POSTGRES_PASSWORD")))
 
+postges_conn = psycopg2.connect("host={} port={} dbname={} user={} password={}"
+                                .format(os.getenv("POSTGRES_HOST"),
+                                    os.getenv("POSTGRES_PORT"),
+                                    os.getenv("POSTGRES_DB"),
+                                    os.getenv("POSTGRES_USER"),
+                                    os.getenv("POSTGRES_PASSWORD")))
 
 SQL_STATEMENT = """ COPY %s FROM STDIN WITH CSV HEADER DELIMITER AS ',' QUOTE AS '`' """
 
@@ -24,7 +33,7 @@ def process_file(conn, table_name, file_path):
 
 
 def init_db_schema():
-    postges_conn.cursor().execute(open('sql/db_init.sql').read())
+    postges_conn.cursor().execute(open(os.path.join(os.path.dirname(__file__),'sql/db_init.sql')).read())
     postges_conn.commit()
 
 
